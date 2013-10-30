@@ -1,6 +1,6 @@
 {
-  "name": "wufoo-to_json",
-  "version": "0.0.1",
+  "name": "wufoo-to-json",
+  "version": "0.0.2",
   "description": "Formats output from Wufoo's API to JSON",
   "main": "index.js",
   "author": "Steve Kinney",
