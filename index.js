@@ -5,14 +5,6 @@ var Objectify = require('objectify-arrays');
 module.exports = pullData;
 
 function pullData(id, subdomain, apiKey, callback) {
-  var options = {
-    auth: {
-      user: apiKey,
-      pass: 'footastic',
-      sendImmediately: false
-    }
-  };
-
   var objectify = new Objectify();
   var results = [];
 
@@ -23,9 +15,9 @@ function pullData(id, subdomain, apiKey, callback) {
     callback(null, results);
   });
 
-  getFields(id, subdomain, function (err, body) {
+  getFields(id, subdomain, apiKey, function (err, body) {
     objectify.setHeader(pluckFields(body));
-    getEntries(id, subdomain, function (err, body) {
+    getEntries(id, subdomain, apiKey, function (err, body) {
       pluckEntries(body).forEach(function (el) {
         objectify.write(el);
       });
@@ -34,7 +26,14 @@ function pullData(id, subdomain, apiKey, callback) {
   });
 }
 
-function get(type, subdomain, id, callback) {
+function get(type, subdomain, apiKey, id, callback) {
+  var options = {
+    auth: {
+      user: apiKey,
+      pass: 'footastic',
+      sendImmediately: false
+    }
+  };
   var url = 'https://' + subdomain + '.wufoo.com/api/v3/forms/'
             + id + '/' + type + '.json';
   request(url, options, function (error, response, body) {
@@ -54,16 +53,3 @@ function getEntries(id, subdomain, callback) {
   get('entries', id, subdomain, callback);
 }
 
-function pluckFields(body) {
-  return body.Fields
-          .map(function (field, index) {
-            return field.Title
-          });
-}
-
-function pluckEntries(body) {
-  return body.Entries
-          .map(function (el) {
-            return _.values(el);
-          });
-}
