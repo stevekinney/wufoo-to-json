@@ -2,6 +2,10 @@
 
 Does what it says it does. It works as far as I can tell, but I didn't write tests. So, let's call it an `alpha` release for the time being, okay?
 
+## Installation
+
+    npm install wufoo-to-json
+
 ## Usage
 
     var wufooToJSON = require('wufoo-to-json');
