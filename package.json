@@ -1,10 +1,23 @@
 {
   "name": "wufoo-to-json",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Formats output from Wufoo's API to JSON",
   "main": "index.js",
-  "author": "Steve Kinney",
+  "bugs": "https://github.com/stevekinney/wufoo-to-json/issues",
+  "author": {
+    "name": "Steve Kinney",
+    "email": "hello@stevekinney.net",
+    "url": "http://stevekinney.net"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stevekinney/wufoo-to-json.git"
+  },
+  "keywords": [
+    "wufoo",
+    "api"
+  ],
   "dependencies": {
     "lodash": "~2.2.1",
     "request": "~2.27.0",
